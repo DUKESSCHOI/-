@@ -64,7 +64,7 @@
 
     @media (max-width: 600px) {
       h1 {
-        font-size: 1.1rem;
+        font-size: 1.5rem;
       }
 
       .timer-text {
@@ -87,7 +87,6 @@
 </head>
 <body>
 
-  <h1 id="title">날짜 설정 중...</h1>
 <h1 id="title">
   <div class="title-line1"></div>
   <div class="title-line2"><id="address">근무지 주소 : 김해시 안동 163-2 7층</div>
@@ -98,8 +97,6 @@
     <div id="timer" class="timer-text">계산 중...</div>
     <img src="후보2.png" class="logo">
   </div>
-
-  <div id="address">근무지 주소 : 김해시 안동 163-2 7층</div>
 
   <script>
     function formatDate(date) {
@@ -120,7 +117,7 @@
   let target = new Date();
 
   target.setDate(now.getDate());
-  target.setHours(3, 0, 0, 0); // 오전 3시
+  target.setHours(1, 30, 0, 0);
 
   if (now >= target) {
 
@@ -130,11 +127,14 @@
   const diff = target - now;
   const hours = Math.floor(diff / (1000 * 60 * 60));
   const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-
+const hStr = String(hours).padStart(2, "0");
+  const mStr = String(minutes).padStart(2, "0");
   document.getElementById("timer").textContent =
     `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
-
+ const timerHtml = `${hStr}<span class="blink-colon">:</span>${mStr}`;
   const timerEl = document.getElementById("timer");
+  timerEl.innerHTML = timerHtml;
+
   if (hour < 3) {
     timerEl.classList.add("blinking");
   } else {
