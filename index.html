@@ -77,16 +77,16 @@
     }
 
     function updateTitle() {
-      const tomorrow = new Date(MM-DD);
+      const tomorrow = new Date();
       tomorrow.setDate(tomorrow.getDate() + 1);
       const formattedDate = formatDate(tomorrow);
       document.getElementById("title").textContent = `${formattedDate} 남김해1캠프 소분3(2W) 근무 시작까지 남은시간`;
     }
 
     function updateTimer() {
-      const now = new Date(MM-DD);
-      const workStart = new Date(MM-DD);
-      workStart.setDate(now.getDate(MM-DD) + 1);
+      const now = new Date();
+      const workStart = new Date();
+      workStart.setDate(now.getDate() + 1);
       workStart.setHours(1, 30); // 오전 1시 30분
 
       const diff = workStart - now;
