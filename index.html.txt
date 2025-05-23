@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>근무 시작까지 남은 시간</title>
+  <title>남김해1 캠프 소분3 근무 시작까지 남은 시간</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -23,16 +23,14 @@
   <div id="countdown">계산 중...</div>
 
   <script>
-    // 근무 시작시간 설정 (예: 오늘 오전 9시)
-    const workHour = 9; // 오전 9시
+    const workHour = 3;
     const countdownElement = document.getElementById('countdown');
 
     function updateCountdown() {
       const now = new Date();
       const workStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), workHour, 0, 0);
 
-      // 만약 이미 시간이 지났다면 내일로 설정
-      if (now > workStart) {
+            if (now > workStart) {
         workStart.setDate(workStart.getDate() + 1);
       }
 
