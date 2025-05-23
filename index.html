@@ -6,17 +6,13 @@
   <title>쿠팡 남김해 2W</title>
   <style>
     body {
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      background: #121212;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      font-family: 'Noto Sans KR', sans-serif;
       text-align: center;
-      height: 100vh;
+      background-color: #000;
+      color: #fff;
       margin: 0;
       padding: 20px;
+      line-height: 1.6;
     }
 
     #title {
@@ -26,13 +22,11 @@
     .title-line1 {
       font-size: 2rem;
       font-weight: bold;
-      color: white;
     }
 
     .title-line2 {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: normal;
-      color: white;
     }
 
     .timer-container {
@@ -44,9 +38,9 @@
     }
 
     #timer {
-      font-size: 5rem;
+      font-size: 6rem;
       font-weight: bold;
-      color: white;
+      color: #fff;
     }
 
     .blinking {
@@ -75,9 +69,8 @@
 
     .address {
       margin-bottom: 10px;
-      font-size: 1.3rem;
-      color: white;
-      font-weight: bold;
+      font-size: 1.5rem;
+      color: #ccc;
     }
 
     img {
@@ -87,16 +80,17 @@
 
     @media (max-width: 600px) {
       #timer {
-        font-size: 5rem;
+        font-size: 3rem;
       }
       .title-line1 {
-        font-size: 2rem;
+        font-size: 1.4rem;
       }
       .title-line2 {
-        font-size: 1.5rem;
+        font-size: 1rem;
       }
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body>
   <h1 id="title">
@@ -110,7 +104,7 @@
     <img src="후보2.png" class="logo" />
   </div>
 
- <script>
+  <script>
     function formatDate(date) {
       const month = (date.getMonth() + 1).toString().padStart(2, '0');
       const day = date.getDate().toString().padStart(2, '0');
