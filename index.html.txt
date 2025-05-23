@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>근무 시작까지 남은 시간</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    h1 {
+      font-size: 2em;
+    }
+    #countdown {
+      font-size: 3em;
+      color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+  <h1>근무 시작까지 남은 시간</h1>
+  <div id="countdown">계산 중...</div>
+
+  <script>
+    // 근무 시작시간 설정 (예: 오늘 오전 9시)
+    const workHour = 9; // 오전 9시
+    const countdownElement = document.getElementById('countdown');
+
+    function updateCountdown() {
+      const now = new Date();
+      const workStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), workHour, 0, 0);
+
+      // 만약 이미 시간이 지났다면 내일로 설정
+      if (now > workStart) {
+        workStart.setDate(workStart.getDate() + 1);
+      }
+
+      const diff = workStart - now;
+
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      countdownElement.textContent = `${hours}시간 ${minutes}분 ${seconds}초`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
