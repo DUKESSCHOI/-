@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>남김해 심야조 근무시간 알리미</title>
+  <title>근무 시작 타이머</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -49,6 +49,11 @@
       color: #ccc;
     }
 
+    img {
+      max-width: 200px;
+      margin-bottom: 20px;
+    }
+
     @media (max-width: 600px) {
       h1 {
         font-size: 1.1rem;
@@ -61,10 +66,17 @@
       #address {
         font-size: 1rem;
       }
+
+      img {
+        max-width: 150px;
+      }
     }
   </style>
 </head>
 <body>
+
+  <img src="https://via.placeholder.com/200x80?text=로고" alt="근무 로고">
+
   <h1 id="title">날짜 설정 중...</h1>
   <div id="timer">계산 중...</div>
   <div id="address">근무지 주소 : 김해시 안동 163-2 7층</div>
@@ -73,7 +85,7 @@
     function formatDate(date) {
       const month = (date.getMonth() + 1).toString().padStart(2, '0');
       const day = date.getDate().toString().padStart(2, '0');
-      return `${year}-${month}-${day}`;
+      return `${month}-${day}`;
     }
 
     function updateTitle() {
@@ -87,7 +99,7 @@
       const now = new Date();
       const workStart = new Date();
       workStart.setDate(now.getDate() + 1);
-      workStart.setHours(1, 30); // 오전 1시 30분
+      workStart.setHours(17, 0, 0, 0); // 오후 5시
 
       const diff = workStart - now;
       const timerEl = document.getElementById('timer');
@@ -100,7 +112,6 @@
 
       const hours = Math.floor(diff / (1000 * 60 * 60));
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
       timerEl.textContent = `${hours}시간 ${minutes}분`;
 
