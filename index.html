@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>근무 시작 타이머</title>
+  <title>쿠팡 남김해 2W</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
-      background-color: #f4f4f4;
+      background-color: black;
       margin: 0;
       padding: 20px;
     }
@@ -18,12 +18,12 @@
     }
 
     .title-line1 {
-      font-size: 1.5rem;
+      font-size: 2rem;
       font-weight: bold;
     }
 
     .title-line2 {
-      font-size: 1.1rem;
+      font-size: 1.5rem;
       font-weight: normal;
     }
 
@@ -36,9 +36,9 @@
     }
 
     #timer {
-      font-size: 4rem;
+      font-size: 5rem;
       font-weight: bold;
-      color: #333;
+      color: white;
     }
 
     .blinking {
@@ -66,9 +66,9 @@
     }
 
     .address {
-      margin-top: 30px;
+      margin-bottom: 10px;
       font-size: 1rem;
-      color: #555;
+      color: white;
     }
 
     img {
@@ -78,13 +78,13 @@
 
     @media (max-width: 600px) {
       #timer {
-        font-size: 3rem;
+        font-size: 5rem;
       }
       .title-line1 {
-        font-size: 1.2rem;
+        font-size: 2rem;
       }
       .title-line2 {
-        font-size: 1rem;
+        font-size: 1.5rem;
       }
     }
   </style>
@@ -92,15 +92,14 @@
 <body>
   <h1 id="title">
     <div class="title-line1"></div>
+    <div class="address">근무지 주소 : 김해시 안동 163-2 7층</div>
     <div class="title-line2">근무 시작까지 남은시간</div>
   </h1>
 
   <div class="timer-container">
     <div id="timer">00<span class="blink-colon">:</span>00</div>
-    <img src="your-image.jpg" alt="이미지 설명" />
+    <img src="후보2.png" class="logo" />
   </div>
-
-  <div class="address">근무지 주소 : 김해시 안동 163-2 7층</div>
 
   <script>
     function formatDate(date) {
@@ -128,14 +127,14 @@
 
       timerEl.innerHTML = `${hStr}<span class="blink-colon">:</span>${mStr}`;
 
-      if (diff < 3600000) {
+      if (diff < 10800000) {
         timerEl.classList.add("blinking");
       } else {
         timerEl.classList.remove("blinking");
       }
 
       const titleDate = new Date(target);
-      titleDate.setDate(target.getDate() - 1); // 표시용 날짜는 시작 기준 하루 전
+      titleDate.setDate(target.getDate() - 1);
       document.querySelector(".title-line1").textContent = `${formatDate(titleDate)} 남김해1캠프 소분3(2W)`;
     }
 
