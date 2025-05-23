@@ -88,6 +88,10 @@
 <body>
 
   <h1 id="title">날짜 설정 중...</h1>
+<h1 id="title">
+  <div class="title-line1">남김해1캠프 소분3(2W)</div>
+  <div class="title-line2">근무 시작까지 남은시간</div>
+</h1>
 
   <div class="timer-container">
     <div id="timer" class="timer-text">계산 중...</div>
@@ -107,7 +111,7 @@
       const tomorrow = new Date();
       tomorrow.setDate(tomorrow.getDate() + 1);
       const formattedDate = formatDate(tomorrow);
-      document.getElementById("title").textContent = `${formattedDate} 남김해1캠프 소분3(2W) </div> 근무 시작까지 남은시간`;
+      document.getElementById("title").textContent = `${formattedDate} 남김해1캠프 소분3(2W) 근무 시작까지 남은시간`;
     }
 
     function updateTimer() {
