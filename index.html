@@ -25,10 +25,16 @@
       margin-bottom: 20px;
     }
 
+    .timer-container {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
     #timer {
       font-size: 3rem;
       font-weight: bold;
-      margin-bottom: 20px;
       transition: color 0.3s ease, opacity 0.3s ease;
     }
 
@@ -50,8 +56,8 @@
     }
 
     img {
-      max-width: 200px;
-      margin-bottom: 20px;
+      width: 100px;
+      height: auto;
     }
 
     @media (max-width: 600px) {
@@ -59,28 +65,32 @@
         font-size: 1.1rem;
       }
 
+      .timer-container {
+        flex-direction: column;
+      }
+
       #timer {
         font-size: 2.2rem;
+      }
+
+      img {
+        width: 80px;
       }
 
       #address {
         font-size: 1rem;
       }
-
-      img {
-        max-width: 150px;
-      }
     }
   </style>
 </head>
 <body>
-
-
   <h1 id="title">날짜 설정 중...</h1>
-   <div class="timer-container">
-   
-    <div id="timer" class="timer-text"> </div><img src="후보2.png" class="logo"></div>계산 중...</div>
+
+  <div class="timer-container">  <img src="후보2.png">
+
+    <div id="timer">계산 중...</div>
   </div>
+
   <div id="address">근무지 주소 : 김해시 안동 163-2 7층</div>
 
   <script>
