@@ -1,50 +1,121 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>남김해1캠프 소분3</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>근무 시작 타이머</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
+      background: #121212;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      margin-top: 100px;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
     }
+
     h1 {
-      font-size: 2em;
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 20px;
     }
-    #countdown {
-      font-size: 3em;
-      color: #2c3e50;
+
+    #timer {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      transition: color 0.3s ease, opacity 0.3s ease;
+    }
+
+    .blinking {
+      color: #ff4d4d;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+
+    #address {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #ccc;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.1rem;
+      }
+
+      #timer {
+        font-size: 2.2rem;
+      }
+
+      #address {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>남김해1캠프 소분3 근무 시작까지 남은 시간</h1>
-  <div id="countdown">계산 중...</div>
+  <h1 id="title">날짜 설정 중...</h1>
+  <div id="timer">계산 중...</div>
+  <div id="address">근무지 주소 : 김해시 안동 163-2 7층</div>
 
   <script>
-    const workHour = 3;
-    const countdownElement = document.getElementById('countdown');
+    function formatDate(date) {
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
 
-    function updateCountdown() {
+    function updateTitle() {
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const formattedDate = formatDate(tomorrow);
+      document.getElementById("title").textContent = `${formattedDate} 남김해1캠프 소분3(2W) 근무 시작까지 남은시간`;
+    }
+
+    function updateTimer() {
       const now = new Date();
-      const workStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), workHour, 0, 0);
-
-            if (now > workStart) {
-        workStart.setDate(workStart.getDate() + 1);
-      }
+      const workStart = new Date();
+      workStart.setDate(now.getDate() + 1);
+      workStart.setHours(3, 0, 0, 0); // 오전 3시
 
       const diff = workStart - now;
+      const timerEl = document.getElementById('timer');
+
+      if (diff <= 0) {
+        timerEl.textContent = "근무 시작!";
+        timerEl.classList.remove("blinking");
+        return;
+      }
 
       const hours = Math.floor(diff / (1000 * 60 * 60));
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-      countdownElement.textContent = `${hours}시간 ${minutes}분 ${seconds}초`;
+      timerEl.textContent = `${hours}시간 ${minutes}분 ${seconds}초`;
+
+      if (hours < 1) {
+        timerEl.classList.add("blinking");
+      } else {
+        timerEl.classList.remove("blinking");
+      }
+
+      requestAnimationFrame(updateTimer);
     }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    updateTitle();
+    updateTimer();
   </script>
 </body>
 </html>
