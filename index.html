@@ -78,7 +78,7 @@
     }
 
     function updateTitle() {
-      const tomorrow = new Date();
+      const tomorrow = new Date(MM-DD);
       tomorrow.setDate(tomorrow.getDate() + 1);
       const formattedDate = formatDate(tomorrow);
       document.getElementById("title").textContent = `${formattedDate} 남김해1캠프 소분3(2W) 근무 시작까지 남은시간`;
