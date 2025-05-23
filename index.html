@@ -123,7 +123,7 @@
   target.setHours(3, 0, 0, 0); // 오전 3시
 
   if (now >= target) {
-    // 현재 시간이 오전 3시 이후면 타겟을 다음날 오전 3시로
+
     target.setDate(target.getDate() + 1);
   }
 
@@ -131,25 +131,21 @@
   const hours = Math.floor(diff / (1000 * 60 * 60));
   const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 
-  // 타이머 출력
   document.getElementById("timer").textContent =
     `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
 
-  // 1시간 미만일 경우 빨간색 점멸
   const timerEl = document.getElementById("timer");
-  if (diff < 3600000) {
+  if (hour < 3) {
     timerEl.classList.add("blinking");
   } else {
     timerEl.classList.remove("blinking");
   }
 
-  // 날짜 텍스트 갱신
-  const dateText = formatDate(target); // 다음 타겟 기준으로 표시
+  const dateText = formatDate(target);
   document.querySelector(".title-line1").textContent =
     `${dateText} 남김해1캠프 소분3(2W)`;
 }
 
-// 매분마다 업데이트
 setInterval(updateTimer, 1000);
 updateTimer();
 
