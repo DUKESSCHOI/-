@@ -25,7 +25,7 @@
     }
 
     .title-line2 {
-      font-size: 1.3rem;
+      font-size: 1.6rem;
       font-weight: normal;
     }
 
@@ -62,7 +62,25 @@
     visibility: hidden;
   }
 }
+    
+.blinking-icon {
+  animation: blink-visibility 1s step-start infinite;
+  color: red;
+  font-size: 2.5rem;
+  margin-right: 10px;
+  display: inline-block;
+}
 
+@keyframes blink-visibility {
+  0%, 49% {
+    visibility: visible;
+  }
+  50%, 100% {
+    visibility: hidden;
+  }
+}
+
+    
     .address {
       margin-bottom: 10px;
       font-size: 1.5rem;
@@ -82,7 +100,8 @@
         font-size: 1.5rem;
       }
       .title-line2 {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
+        font-weight: bold;
       }
        .address {
       margin-bottom: 10px;
@@ -103,9 +122,10 @@
   </h1>
 
   <div class="timer-container">
-    <div id="timer">00<span class="blink-colon">:</span>00</div>
-    <img src="후보2.png" class="logo" alt="회사 로고" />
-  </div>
+  <span id="alarm-icon" class="alarm-icon">⏰</span>
+  <div id="timer">00<span class="blink-colon">:</span>00</div>
+  <img src="후보2.png" class="logo" alt="회사 로고" />
+</div>
 
   <script>
    function formatDate(date) {
@@ -128,13 +148,16 @@ function updateTimer() {
   const hStr = String(hours).padStart(2, "0");
   const mStr = String(minutes).padStart(2, "0");
   const timerEl = document.getElementById("timer");
-
+  const iconEl = document.getElementById("alarm-icon");
+  
   timerEl.innerHTML = `${hStr}시간 ${mStr}분`;
 
   if (diff < 10800000) {
     timerEl.classList.add("blinking");
+    iconEl.classList.add("blinking-icon"); 
   } else {
     timerEl.classList.remove("blinking");
+    iconEl.classList.remove("blinking-icon");
   }
 
   let displayDate = new Date();
@@ -147,6 +170,7 @@ function updateTimer() {
   document.querySelector(".title-line1").textContent = `남김해1캠프 소분3(2W)`;
   document.getElementById("work-date").textContent = formatDate(displayDate);
 }
+
 
     setInterval(updateTimer, 1000);
     updateTimer();
