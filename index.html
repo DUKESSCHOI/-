@@ -29,21 +29,30 @@
       font-weight: bold;
     }
 
-    .timer-container {
-      display: flex;
-      flex-direction: column; 
-      justify-content: center;
-      align-items: center;
-      gap: 1px; 
-      flex-wrap: nowrap;
-    }
+   .timer-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
 
-    #timer {
-      font-size: 6rem;
-      font-weight: bold;
-      color: #fff;
-    }
+#alarm-icon {
+  font-size: 4rem;
+  animation: blink-visibility 1s step-start infinite;
+  color: red;
+  margin-bottom: 2px;
+  line-height: 1;
+  user-select: none;
+  display: inline-block;
+}
 
+#timer {
+  font-size: 6rem;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1;
+}
     .blinking {
       color: red;
       animation: blink-visibility 1s step-start infinite;
