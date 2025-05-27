@@ -31,10 +31,11 @@
 
     .timer-container {
       display: flex;
+      flex-direction: column; 
       justify-content: center;
       align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
+      gap: 10px; 
+      flex-wrap: nowrap;
     }
 
     #timer {
@@ -44,43 +45,28 @@
     }
 
     .blinking {
-  color: red;
-  animation: blink-visibility 1s step-start infinite;
-}
+      color: red;
+      animation: blink-visibility 1s step-start infinite;
+    }
 
-    @keyframes blink {
-      50% {
-        opacity: 0;
+    .blinking-icon {
+      animation: blink-visibility 1s step-start infinite;
+      color: red;
+      font-size: 4rem;
+      line-height: 1;
+      user-select: none;
+      display: inline-block;
+    }
+
+    @keyframes blink-visibility {
+      0%, 49% {
+        visibility: visible;
+      }
+      50%, 100% {
+        visibility: hidden;
       }
     }
 
-   @keyframes blink-visibility {
-  0%, 49% {
-    visibility: visible;
-  }
-  50%, 100% {
-    visibility: hidden;
-  }
-}
-    
-.blinking-icon {
-  animation: blink-visibility 1s step-start infinite;
-  color: red;
-  font-size: 2.5rem;
-  margin-right: 10px;
-  display: inline-block;
-}
-
-@keyframes blink-visibility {
-  0%, 49% {
-    visibility: visible;
-  }
-  50%, 100% {
-    visibility: hidden;
-  }
-}
-
-    
     .address {
       margin-bottom: 10px;
       font-size: 1.5rem;
@@ -103,74 +89,76 @@
         font-size: 1.4rem;
         font-weight: bold;
       }
-       .address {
-      margin-bottom: 10px;
-      font-size: 1.3rem;
-    }
+      .address {
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+      }
+      .blinking-icon {
+        font-size: 3rem;
+      }
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
 </head>
 <body>
   <h1 id="title">
     <div class="title-line1"></div>
     <div class="address">근무지 주소 : 김해시 안동 163-2 7층</div>
-    <div class="title-line2">  
+    <div class="title-line2">
       <span id="work-date"></span> 
-      <span> 근무 시작까지 남은 시간</span> 
+      <span> 근무 시작까지 남은 시간</span>
     </div>
   </h1>
 
   <div class="timer-container">
-  <span id="alarm-icon" class="alarm-icon">⏰</span>
-  <div id="timer">00<span class="blink-colon">:</span>00</div>
-  <img src="후보2.png" class="logo" alt="회사 로고" />
-</div>
+    <div id="alarm-icon" class="blinking-icon">⏰</div>
+    <div id="timer">00시간 00분</div>
+    <img src="후보2.png" class="logo" alt="회사 로고" />
+  </div>
 
   <script>
-   function formatDate(date) {
-  const day = date.getDate().toString().padStart(2, '0');
-  return `${day}일`;
-}
+    function formatDate(date) {
+      const day = date.getDate().toString().padStart(2, '0');
+      return `${day}일`;
+    }
 
-function updateTimer() {
-  const now = new Date();
-  let target = new Date();
-  target.setHours(1, 30, 0, 0);
-  if (now >= target) {
-    target.setDate(target.getDate() + 1);
-  }
-
-  const diff = target - now;
-  const hours = Math.floor(diff / (1000 * 60 * 60));
-  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-
-  const hStr = String(hours).padStart(2, "0");
-  const mStr = String(minutes).padStart(2, "0");
-  const timerEl = document.getElementById("timer");
-  const iconEl = document.getElementById("alarm-icon");
+    const iconEl = document.getElementById("alarm-icon");
   
-  timerEl.innerHTML = `${hStr}시간 ${mStr}분`;
 
-  if (diff < 10800000) {
-    timerEl.classList.add("blinking");
-    iconEl.classList.add("blinking-icon"); 
-  } else {
-    timerEl.classList.remove("blinking");
-    iconEl.classList.remove("blinking-icon");
-  }
+    function updateTimer() {
+      const now = new Date();
+      let target = new Date();
+      target.setHours(1, 30, 0, 0);
+      if (now >= target) {
+        target.setDate(target.getDate() + 1);
+      }
 
-  let displayDate = new Date();
-  if (now.getHours() < 1 || (now.getHours() === 1 && now.getMinutes() < 30)) {
-    displayDate.setDate(displayDate.getDate());
-  } else {
-    displayDate.setDate(displayDate.getDate() + 1);
-  }
+      const diff = target - now;
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 
-  document.querySelector(".title-line1").textContent = `남김해1캠프 소분3(2W)`;
-  document.getElementById("work-date").textContent = formatDate(displayDate);
-}
+      const hStr = String(hours).padStart(2, "0");
+      const mStr = String(minutes).padStart(2, "0");
+      const timerEl = document.getElementById("timer");
 
+      timerEl.innerHTML = `${hStr}시간 ${mStr}분`;
+
+      if (diff < 10800000) { 
+        timerEl.classList.add("blinking");
+      } else {
+        timerEl.classList.remove("blinking");
+      }
+
+      let displayDate = new Date();
+      if (now.getHours() < 1 || (now.getHours() === 1 && now.getMinutes() < 30)) {
+        displayDate.setDate(displayDate.getDate());
+      } else {
+        displayDate.setDate(displayDate.getDate() + 1);
+      }
+
+      document.querySelector(".title-line1").textContent = `남김해1캠프 소분3(2W)`;
+      document.getElementById("work-date").textContent = formatDate(displayDate);
+    }
 
     setInterval(updateTimer, 1000);
     updateTimer();
