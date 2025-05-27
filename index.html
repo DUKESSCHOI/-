@@ -44,9 +44,9 @@
     }
 
     .blinking {
-      animation: blink-red 1s step-start infinite;
-      color: red !important;
-    }
+  color: red;
+  animation: blink-visibility 1s step-start infinite;
+}
 
     @keyframes blink {
       50% {
@@ -54,14 +54,14 @@
       }
     }
 
-    @keyframes blink-red {
-      0%, 49% {
-        color: red;
-      }
-      50%, 100% {
-        color: transparent;
-      }
-    }
+   @keyframes blink-visibility {
+  0%, 49% {
+    visibility: visible;
+  }
+  50%, 100% {
+    visibility: hidden;
+  }
+}
 
     .address {
       margin-bottom: 10px;
@@ -82,7 +82,7 @@
         font-size: 1.5rem;
       }
       .title-line2 {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
       }
        .address {
       margin-bottom: 10px;
@@ -96,24 +96,26 @@
   <h1 id="title">
     <div class="title-line1"></div>
     <div class="address">근무지 주소 : 김해시 안동 163-2 7층</div>
-    <div class="title-line2">근무 시작까지 남은시간</div>
+    <div class="title-line2">  
+      <span id="work-date"></span> 
+      <span> 근무 시작까지 남은 시간</span> 
+    </div>
   </h1>
 
   <div class="timer-container">
     <div id="timer">00<span class="blink-colon">:</span>00</div>
-    <img src="후보2.png" class="logo" />
+    <img src="후보2.png" class="logo" alt="회사 로고" />
   </div>
 
   <script>
-    function formatDate(date) {
-      const month = (date.getMonth() + 1).toString().padStart(2, '0');
-      const day = date.getDate().toString().padStart(2, '0');
-      return `${month}-${day}`;
-    }
+   function formatDate(date) {
+  const day = date.getDate().toString().padStart(2, '0');
+  return `${day}일`;
+}
+
 function updateTimer() {
   const now = new Date();
   let target = new Date();
-
   target.setHours(1, 30, 0, 0);
   if (now >= target) {
     target.setDate(target.getDate() + 1);
@@ -136,12 +138,14 @@ function updateTimer() {
   }
 
   let displayDate = new Date();
-  if (now.getHours() < 1.5) {
+  if (now.getHours() < 1 || (now.getHours() === 1 && now.getMinutes() < 30)) {
     displayDate.setDate(displayDate.getDate());
   } else {
     displayDate.setDate(displayDate.getDate() + 1);
   }
-  document.querySelector(".title-line1").textContent = `${formatDate(displayDate)} 남김해1캠프 소분3(2W)`;
+
+  document.querySelector(".title-line1").textContent = `남김해1캠프 소분3(2W)`;
+  document.getElementById("work-date").textContent = formatDate(displayDate);
 }
 
     setInterval(updateTimer, 1000);
