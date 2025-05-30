@@ -16,7 +16,7 @@
     }
 
     #title {
-      margin-top: 4rem
+      margin-top: 4rem;
       margin-bottom: 20px;
     }
 
@@ -176,7 +176,7 @@
   <script>
     function formatDate(date) {
       const day = date.getDate().toString().padStart(2, '0');
-      return ${day}일;
+      return '${day}일';
     }
 
     function updateTimer() {
@@ -196,7 +196,7 @@
       const mStr = String(minutes).padStart(2, "0");
 
       const timerEl = document.getElementById("timer");
-      timerEl.innerHTML = ${hStr}시간 ${mStr}분;
+      timerEl.innerHTML = '${hStr}시간 ${mStr}분';
 
       if (diff < 10800000) {
         timerEl.classList.add("blinking");
@@ -221,7 +221,7 @@
 
       const progressPercent = Math.min(100, Math.max(0, (elapsed / totalPeriod) * 100));
       const progressBar = document.getElementById("progress-bar");
-      progressBar.style.width = ${progressPercent}%;
+      progressBar.style.width = '${progressPercent}%';
 
       if (diff < 3 * 60 * 60 * 1000) {
         progressBar.classList.add("progress-bar-danger");
