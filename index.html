@@ -117,10 +117,9 @@
     }
 
     @media (max-width: 600px) {
-        #title {
-    margin-top: 3rem;
-  }
-}
+      #title {
+        margin-top: 3rem;
+      }
 
       #timer {
         font-size: 4rem;
@@ -164,7 +163,6 @@
     <div id="alarm-icon" class="blinking-icon">⏰</div>
     <div id="timer">00시간 00분</div>
 
-    <!-- 진행률 바 -->
     <div class="progress-bar-container">
       <div class="progress-bar-fill" id="progress-bar"></div>
     </div>
@@ -176,7 +174,7 @@
   <script>
     function formatDate(date) {
       const day = date.getDate().toString().padStart(2, '0');
-      return '${day}일';
+      return `${day}일`;
     }
 
     function updateTimer() {
@@ -196,7 +194,7 @@
       const mStr = String(minutes).padStart(2, "0");
 
       const timerEl = document.getElementById("timer");
-      timerEl.innerHTML = '${hStr}시간 ${mStr}분';
+      timerEl.innerHTML = `${hStr}시간 ${mStr}분`;
 
       if (diff < 10800000) {
         timerEl.classList.add("blinking");
@@ -211,7 +209,7 @@
         displayDate.setDate(displayDate.getDate() + 1);
       }
 
-      document.querySelector(".title-line1").textContent = 남김해1캠프 소분3(2W);
+      document.querySelector(".title-line1").textContent = "남김해1캠프 소분3(2W)";
       document.getElementById("work-date").textContent = formatDate(displayDate);
 
       let start = new Date(todayTarget);
@@ -221,7 +219,7 @@
 
       const progressPercent = Math.min(100, Math.max(0, (elapsed / totalPeriod) * 100));
       const progressBar = document.getElementById("progress-bar");
-      progressBar.style.width = '${progressPercent}%';
+      progressBar.style.width = `${progressPercent}%`;
 
       if (diff < 3 * 60 * 60 * 1000) {
         progressBar.classList.add("progress-bar-danger");
