@@ -7,22 +7,16 @@
   <style>
     body {
       font-family: 'Noto Sans KR', sans-serif;
+      text-align: center;
       background-color: #000;
       color: #fff;
       margin: 0;
       padding: 20px;
-
-      
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-
-      text-align: center;
       line-height: 1.6;
     }
 
     #title {
+      margin-top: 60px
       margin-bottom: 20px;
     }
 
@@ -165,6 +159,7 @@
     <div id="alarm-icon" class="blinking-icon">⏰</div>
     <div id="timer">00시간 00분</div>
 
+    <!-- 진행률 바 -->
     <div class="progress-bar-container">
       <div class="progress-bar-fill" id="progress-bar"></div>
     </div>
@@ -215,7 +210,7 @@
       document.getElementById("work-date").textContent = formatDate(displayDate);
 
       let start = new Date(todayTarget);
-      start.setDate(start.getDate() - 1);
+      start.setDate(start.getDate() - 1); // 전날
       const totalPeriod = todayTarget - start;
       const elapsed = now - start;
 
